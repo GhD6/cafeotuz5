@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Otuz5 — Alsancak, İzmir</title>
+<meta name="description" content="Café Otuz5, Alsancak'ta kendi çekirdeklerini kavuran, filtre kahveden Türk kahvesine uzanan bir mahalle kahvesi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241812;
+    --paper:#F1E9D8;
+    --paper-soft:#E7DBC3;
+    --rust:#A8492B;
+    --rust-dark:#8A3B22;
+    --pine:#2E4A44;
+    --brass:#C89B3C;
+    --line:#D9CBB0;
+    --white:#FBF7EE;
+    --serif:'Fraunces', serif;
+    --sans:'Manrope', sans-serif;
+    --header-h:76px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0 0 .5em;line-height:1.15;}
+  section{scroll-margin-top:var(--header-h);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  :focus-visible{outline:3px solid var(--rust);outline-offset:3px;}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(241,233,216,0.7);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;
+  }
+  .site-header.scrolled{
+    background:rgba(241,233,216,0.96);
+    border-bottom-color:var(--line);
+    box-shadow:0 6px 20px rgba(36,24,18,.06);
+  }
+  .header-inner{
+    max-width:1180px;margin:0 auto;padding:0 32px;
+    height:var(--header-h);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--serif);font-size:1.4rem;font-weight:600;
+    text-decoration:none;letter-spacing:.01em;
+  }
+  .brand em{font-style:normal;color:var(--rust);}
+  .main-nav{display:flex;gap:32px;}
+  .main-nav a{
+    text-decoration:none;font-size:.98rem;font-weight:500;
+    color:var(--ink);opacity:.8;
+    padding:6px 0;border-bottom:2px solid transparent;
+    transition:opacity .2s ease,border-color .2s ease;
+  }
+  .main-nav a:hover{opacity:1;border-color:var(--rust);}
+  .nav-toggle{
+    display:none;flex-direction:column;justify-content:center;gap:5px;
+    width:40px;height:40px;background:none;border:none;cursor:pointer;padding:0;
+  }
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);transition:transform .25s ease,opacity .25s ease;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:.95rem;
+    text-decoration:none;border:1.5px solid transparent;cursor:pointer;
+    transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--rust);color:var(--white);}
+  .btn-primary:hover{background:var(--rust-dark);}
+  .btn-ghost{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:calc(var(--header-h) + 64px) 0 96px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  }
+  .eyebrow{
+    font-size:.95rem;color:var(--pine);font-weight:600;margin:0 0 18px;
+  }
+  .hero-text h1{
+    font-size:clamp(2.4rem,4.2vw,3.6rem);max-width:11ch;margin-bottom:.35em;
+  }
+  .lede{font-size:1.1rem;max-width:46ch;color:#463327;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px;}
+  .hero-meta{display:flex;gap:40px;margin:0;padding-top:28px;border-top:1px solid var(--line);}
+  .hero-meta dt{font-size:.8rem;color:var(--pine);font-weight:600;margin-bottom:4px;}
+  .hero-meta dd{margin:0;font-family:var(--serif);font-size:1.05rem;}
+
+  .hero-visual{position:relative;}
+  .hero-img{
+    width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px 20px 4px 20px;
+    box-shadow:0 30px 50px -20px rgba(36,24,18,.35);
+  }
+  .badge-35{
+    position:absolute;left:-28px;bottom:-28px;
+    width:120px;height:120px;border-radius:50%;
+    background:var(--brass);color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform:rotate(-9deg);border:3px solid var(--paper);
+    box-shadow:0 12px 24px rgba(36,24,18,.25);
+  }
+  .badge-35 strong{font-family:var(--serif);font-size:2.1rem;line-height:1;}
+  .badge-35 span{font-size:.65rem;letter-spacing:.08em;margin-top:2px;}
+
+  /* ---------- Story ---------- */
+  .story{padding:96px 0;}
+  .story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;}
+  .story-media img{border-radius:4px 20px 20px 20px;aspect-ratio:3/4;object-fit:cover;}
+  .story-copy h2{font-size:2.1rem;}
+  .story-copy p{max-width:58ch;color:#463327;margin-bottom:18px;}
+  .feature-list{list-style:none;margin:36px 0 0;padding:24px 0 0;border-top:1px solid var(--line);display:grid;gap:24px;}
+  .feature-list li{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;}
+  .feature-list .dot{
+    width:10px;height:10px;border-radius:50%;background:var(--rust);margin-top:9px;flex-shrink:0;
+  }
+  .feature-list h3{font-size:1.05rem;margin-bottom:4px;font-family:var(--sans);font-weight:700;}
+  .feature-list p{margin:0;color:#5a4738;font-size:.96rem;}
+
+  /* ---------- Menu ---------- */
+  .menu-section{padding:96px 0;background:var(--paper-soft);}
+  .menu-head{max-width:60ch;margin-bottom:40px;}
+  .menu-head h2{font-size:2.1rem;}
+  .menu-head p{color:#463327;}
+  .menu-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+  .tab-btn{
+    background:transparent;border:1.5px solid var(--line);color:var(--ink);
+    padding:9px 18px;border-radius:999px;font-family:var(--sans);font-weight:600;
+    font-size:.9rem;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .tab-btn:hover{border-color:var(--rust);}
+  .tab-btn.active{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+  .menu-panels{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;}
+  .menu-list{list-style:none;margin:0;padding:0;display:none;grid-column:1/-1;grid-template-columns:subgrid;}
+  .menu-list.active{display:grid;}
+  .menu-item{
+    display:flex;align-items:flex-end;gap:10px;padding:16px 0;border-bottom:1px solid var(--line);
+  }
+  .item-main{display:flex;flex-direction:column;gap:2px;max-width:60%;}
+  .item-name{font-family:var(--serif);font-size:1.05rem;}
+  .item-desc{font-size:.83rem;color:#71604e;}
+  .item-dots{flex:1;border-bottom:2px dotted #c3b291;margin-bottom:7px;height:0;}
+  .item-price{font-weight:700;color:var(--rust);white-space:nowrap;font-variant-numeric:tabular-nums;}
+
+  /* ---------- Gallery ---------- */
+  .gallery{padding:96px 0;}
+  .gallery h2{font-size:2.1rem;margin-bottom:12px;}
+  .gallery-lede{color:#463327;max-width:56ch;margin-bottom:36px;}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;gap:14px;
+  }
+  .gallery-item{
+    border:none;padding:0;margin:0;cursor:zoom-in;border-radius:10px;overflow:hidden;
+    background:var(--paper-soft);position:relative;
+  }
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .gallery-item:hover img{transform:scale(1.06);}
+  .gallery-item:nth-child(1){grid-column:span 2;grid-row:span 2;}
+  .gallery-item:nth-child(4){grid-row:span 2;}
+  .gallery-item:nth-child(6){grid-column:span 2;}
+
+  .lightbox{
+    position:fixed;inset:0;background:rgba(24,16,11,.92);z-index:100;
+    display:flex;align-items:center;justify-content:center;padding:40px;
+  }
+  .lightbox[hidden]{display:none;}
+  .lightbox img{max-width:min(900px,92vw);max-height:86vh;border-radius:8px;object-fit:contain;}
+  .lightbox-close{
+    position:absolute;top:24px;right:32px;background:none;border:none;color:var(--white);
+    font-size:2rem;cursor:pointer;line-height:1;padding:8px;
+  }
+
+  /* ---------- Location ---------- */
+  .location{padding:96px 0;background:var(--paper-soft);}
+  .location-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:stretch;}
+  .location-info h2{font-size:2.1rem;}
+  .location-info dl{margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line);}
+  .location-info dl div{display:flex;gap:20px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .location-info dt{width:100px;flex-shrink:0;color:var(--pine);font-weight:600;font-size:.9rem;}
+  .location-info dd{margin:0;}
+  .location-map{border-radius:16px;overflow:hidden;min-height:340px;border:1px solid var(--line);}
+  .location-map iframe{width:100%;height:100%;min-height:340px;border:0;display:block;}
+
+  /* ---------- Contact ---------- */
+  .contact{padding:96px 0;}
+  .contact-inner{max-width:640px;}
+  .contact h2{font-size:2.1rem;}
+  .contact-lede{color:#463327;margin-bottom:36px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  form label{display:block;font-size:.88rem;font-weight:600;color:var(--pine);margin-bottom:20px;}
+  form input,form textarea{
+    width:100%;margin-top:7px;padding:12px 14px;border-radius:10px;
+    border:1.5px solid var(--line);background:var(--white);
+    font-family:var(--sans);font-size:.98rem;color:var(--ink);resize:vertical;
+  }
+  form input:focus,form textarea:focus{border-color:var(--rust);outline:none;}
+  .form-note{margin-top:18px;color:var(--pine);font-weight:600;font-size:.92rem;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{padding:40px 0;border-top:1px solid var(--line);}
+  .footer-inner{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:.88rem;color:#5a4738;
+  }
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{opacity:.75;transition:opacity .2s ease;}
+  .footer-social a:hover{opacity:1;}
+
+  @media (max-width:860px){
+    .wrap,.header-inner{padding-left:22px;padding-right:22px;}
+    .main-nav{
+      position:fixed;top:var(--header-h);left:0;right:0;bottom:0;
+      background:var(--paper);flex-direction:column;gap:0;
+      padding:12px 22px 40px;transform:translateY(-110%);
+      transition:transform .3s ease;overflow:auto;
+    }
+    .main-nav.open{transform:translateY(0);}
+    .main-nav a{padding:16px 0;border-bottom:1px solid var(--line);width:100%;}
+    .nav-toggle{display:flex;}
+    .hero-grid,.story-grid,.location-grid{grid-template-columns:1fr;}
+    .story-media{order:-1;}
+    .menu-panels{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;}
+    .gallery-item:nth-child(1){grid-column:span 2;grid-row:span 1;}
+    .badge-35{width:92px;height:92px;left:-14px;bottom:-14px;}
+    .badge-35 strong{font-size:1.6rem;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a href="#top" class="brand">Café <em>Otuz5</em></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#hikaye">Hikayemiz</a>
+      <a href="#menu">Menü</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#konum">Konum</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Alsancak, İzmir'de küçük bir kahve durağı</p>
+        <h1>Kahve burada acele etmez.</h1>
+        <p class="lede">Otuz5, Kordon'a birkaç adım mesafede; kendi çekirdeklerini kavuran, filtre kahveden Türk kahvesine uzanan bir mahalle kahvesi.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary">Menüyü incele</a>
+          <a href="#konum" class="btn btn-ghost">Bizi bulun</a>
+        </div>
+        <dl class="hero-meta">
+          <div><dt>Açık</dt><dd>Her gün 08:00–23:00</dd></div>
+          <div><dt>Konum</dt><dd>Alsancak, İzmir</dd></div>
+        </dl>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-img" src="https://loremflickr.com/900/1100/espresso,coffee/all?lock=21" alt="Otuz5'te hazırlanan bir espresso">
+        <div class="badge-35" aria-hidden="true">
+          <strong>35</strong>
+          <span>İZMİR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="hikaye">
+    <div class="wrap story-grid">
+      <div class="story-media">
+        <img src="https://loremflickr.com/800/1000/coffee,roasting/all?lock=32" alt="Kavrulmuş kahve çekirdekleri">
+      </div>
+      <div class="story-copy">
+        <h2>Hikayemiz</h2>
+        <p>Otuz5, üç arkadaşın Alsancak'taki eski bir apartman dairesini kahve kokan bir buluşma noktasına çevirmesiyle başladı. İsmimizi İzmir'in plaka kodundan aldık; amacımız her fincanda şehrin tuzlu esintisini ve dar sokaklarının sıcaklığını hissettirebilmek.</p>
+        <p>Çekirdeklerimizi haftalık küçük partiler halinde kendimiz kavuruyor, filtre kahvemizi her hafta değişen bir liste üzerinden sunuyoruz. Üst kat ise okumak, çalışmak ya da sadece pencereden sokağı izlemek isteyenler için ayrılmış sakin bir köşe.</p>
+        <ul class="feature-list">
+          <li><span class="dot"></span><div><h3>Kendi kavurumuz</h3><p>Haftalık küçük partiler halinde kavrulmuş, tazeliğinden ödün vermeyen çekirdekler.</p></div></li>
+          <li><span class="dot"></span><div><h3>Mahalle sofrası</h3><p>Ev yapımı tatlılar ve komşu fırından her sabah gelen taze ekmek.</p></div></li>
+          <li><span class="dot"></span><div><h3>Sessiz üst kat</h3><p>Çalışmak ya da kitap okumak isteyenler için ayrılmış sakin bir alan.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section" id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <h2>Menü</h2>
+        <p>Fiyatlar 2026 sezonu için geçerlidir, mevsime göre küçük değişiklikler gösterebilir.</p>
+      </div>
+      <div class="menu-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="kahveler" role="tab" aria-selected="true">Kahveler</button>
+        <button class="tab-btn" data-tab="turk" role="tab" aria-selected="false">Türk Kahvesi</button>
+        <button class="tab-btn" data-tab="soguk" role="tab" aria-selected="false">Soğuk İçecekler</button>
+        <button class="tab-btn" data-tab="tatli" role="tab" aria-selected="false">Tatlı &amp; Atıştırmalık</button>
+      </div>
+      <div class="menu-panels">
+        <ul class="menu-list active" id="kahveler">
+          <li class="menu-item"><div class="item-main"><span class="item-name">Filtre Kahve</span><span class="item-desc">Haftanın kahvesi, V60 ile demlenir</span></div><span class="item-dots"></span><span class="item-price">120₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Espresso</span><span class="item-desc">Tek veya çift shot</span></div><span class="item-dots"></span><span class="item-price">90₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Americano</span></div><span class="item-dots"></span><span class="item-price">130₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Latte</span><span class="item-desc">İsteğe bağlı fındık veya karamel şurubu</span></div><span class="item-dots"></span><span class="item-price">160₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Flat White</span></div><span class="item-dots"></span><span class="item-price">170₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Cortado</span></div><span class="item-dots"></span><span class="item-price">150₺</span></li>
+        </ul>
+        <ul class="menu-list" id="turk">
+          <li class="menu-item"><div class="item-main"><span class="item-name">Türk Kahvesi</span><span class="item-desc">Sade, az şekerli veya şekerli</span></div><span class="item-dots"></span><span class="item-price">110₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Dibek Kahvesi</span></div><span class="item-dots"></span><span class="item-price">140₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Menengiç Kahvesi</span></div><span class="item-dots"></span><span class="item-price">130₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Osmanlı Kahvesi</span><span class="item-desc">Tarçın ve karanfil ile</span></div><span class="item-dots"></span><span class="item-price">145₺</span></li>
+        </ul>
+        <ul class="menu-list" id="soguk">
+          <li class="menu-item"><div class="item-main"><span class="item-name">Ice Latte</span></div><span class="item-dots"></span><span class="item-price">170₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Cold Brew</span><span class="item-desc">24 saat soğuk demleme</span></div><span class="item-dots"></span><span class="item-price">160₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Frappe</span></div><span class="item-dots"></span><span class="item-price">155₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Ev Yapımı Limonata</span><span class="item-desc">Nane ile</span></div><span class="item-dots"></span><span class="item-price">120₺</span></li>
+        </ul>
+        <ul class="menu-list" id="tatli">
+          <li class="menu-item"><div class="item-main"><span class="item-name">Cheesecake</span></div><span class="item-dots"></span><span class="item-price">190₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Brownie</span><span class="item-desc">Sıcak servis edilir</span></div><span class="item-dots"></span><span class="item-price">150₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">San Sebastian</span></div><span class="item-dots"></span><span class="item-price">200₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Kaşarlı Tost</span></div><span class="item-dots"></span><span class="item-price">140₺</span></li>
+          <li class="menu-item"><div class="item-main"><span class="item-name">Simit &amp; Peynir Tabağı</span></div><span class="item-dots"></span><span class="item-price">160₺</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="galeri">
+    <div class="wrap">
+      <h2>İçeriden kareler</h2>
+      <p class="gallery-lede">Bir fincanın arkasında neler oluyor, birkaç kareyle özetledik.</p>
+      <div class="gallery-grid">
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/latteart,coffee/all?lock=1"><img src="https://loremflickr.com/500/500/latteart,coffee/all?lock=1" alt="Latte art detayı" loading="lazy"></button>
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/coffeeshop,interior/all?lock=2"><img src="https://loremflickr.com/500/500/coffeeshop,interior/all?lock=2" alt="Otuz5'in iç mekanı" loading="lazy"></button>
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/barista/all?lock=3"><img src="https://loremflickr.com/500/500/barista/all?lock=3" alt="Baristamız iş başında" loading="lazy"></button>
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/coffeebeans/all?lock=4"><img src="https://loremflickr.com/500/500/coffeebeans/all?lock=4" alt="Taze kavrulmuş çekirdekler" loading="lazy"></button>
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/cheesecake,dessert/all?lock=5"><img src="https://loremflickr.com/500/500/cheesecake,dessert/all?lock=5" alt="Günün tatlısı" loading="lazy"></button>
+        <button class="gallery-item" data-full="https://loremflickr.com/1200/1200/coffeeshop,street/all?lock=6"><img src="https://loremflickr.com/500/500/coffeeshop,street/all?lock=6" alt="Sokaktan Otuz5 cephesi" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="location" id="konum">
+    <div class="wrap location-grid">
+      <div class="location-info">
+        <h2>Bizi ziyaret edin</h2>
+        <dl>
+          <div><dt>Adres</dt><dd>1382 Sokak No: 7, Alsancak, İzmir</dd></div>
+          <div><dt>Saatler</dt><dd>Pazartesi–Cuma 08:00–22:00<br>Cumartesi–Pazar 09:00–23:00</dd></div>
+          <div><dt>Telefon</dt><dd>0232 000 00 00</dd></div>
+          <div><dt>Instagram</dt><dd>@cafeotuz5</dd></div>
+        </dl>
+      </div>
+      <div class="location-map">
+        <iframe title="Otuz5 konum haritası" src="https://www.openstreetmap.org/export/embed.html?bbox=27.1200%2C38.4150%2C27.1550%2C38.4400&amp;layer=mapnik&amp;marker=38.4278%2C27.1367" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="iletisim">
+    <div class="wrap contact-inner">
+      <h2>Bize yazın</h2>
+      <p class="contact-lede">Etkinlik, özel organizasyon ya da toplu sipariş için birkaç satır yeterli.</p>
+      <form id="contactForm">
+        <div class="form-row">
+          <label>Ad Soyad<input type="text" name="name" required></label>
+          <label>E-posta<input type="email" name="email" required></label>
+        </div>
+        <label>Mesaj<textarea name="message" rows="4" required></textarea></label>
+        <button type="submit" class="btn btn-primary">Gönder</button>
+        <p class="form-note" id="formNote" hidden>Teşekkürler! Mesajınız alındı. (Bu form bir demodur — gerçek gönderim için bir form servisine bağlanması gerekir.)</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>Café Otuz5 © <span id="year"></span> — İzmir'in plaka kodundan ilhamla</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/cafeotuz5" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:merhaba@cafeotuz5.com">merhaba@cafeotuz5.com</a>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Kapat">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  // Yıl
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll'da header stili
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobil menü
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  navToggle.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mainNav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Menü sekmeleri
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const menuLists = document.querySelectorAll('.menu-list');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      menuLists.forEach(list => list.classList.toggle('active', list.id === btn.dataset.tab));
+    });
+  });
+
+  // Galeri lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.dataset.full;
+      lightboxImg.alt = item.querySelector('img').alt;
+      lightbox.hidden = false;
+    });
+  });
+  const closeLightbox = () => { lightbox.hidden = true; lightboxImg.src = ''; };
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // İletişim formu (demo)
+  const form = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    formNote.hidden = false;
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
